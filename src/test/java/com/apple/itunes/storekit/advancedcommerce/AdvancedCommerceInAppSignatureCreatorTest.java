@@ -2,7 +2,8 @@
 
 package com.apple.itunes.storekit.advancedcommerce;
 
-import com.apple.itunes.storekit.model.AdvancedCommerceInAppRequest;
+import com.apple.itunes.storekit.model.AbstractAdvancedCommerceInAppRequest;
+import com.apple.itunes.storekit.model.AdvancedCommerceRequestInfo;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -60,14 +61,22 @@ class AdvancedCommerceInAppSignatureCreatorTest {
         }
     }
 
-    private static class TestInAppRequest implements AdvancedCommerceInAppRequest {
+    private static class TestInAppRequest extends AbstractAdvancedCommerceInAppRequest<TestInAppRequest> {
 
         @JsonProperty("testValue")
         private String testValue;
 
-        public TestInAppRequest() {}
+        public TestInAppRequest() {
+            super("TEST_OPERATION", "1", new AdvancedCommerceRequestInfo(UUID.randomUUID()));
+        }
+
+        @Override
+        protected TestInAppRequest self() {
+            return this;
+        }
 
         public TestInAppRequest(String testValue) {
+            this();
             this.testValue = testValue;
         }
 

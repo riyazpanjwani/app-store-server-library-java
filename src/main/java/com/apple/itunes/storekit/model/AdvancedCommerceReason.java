@@ -1,0 +1,39 @@
+// Copyright (c) 2025 Apple Inc. Licensed under MIT License.
+
+package com.apple.itunes.storekit.model;
+
+import com.fasterxml.jackson.annotation.JsonValue;
+
+/**
+ *
+ */
+public enum AdvancedCommerceReason {
+    UPGRADE("UPGRADE"),
+    DOWNGRADE("DOWNGRADE"),
+    APPLY_OFFER("APPLY_OFFER");
+
+    private final String value;
+
+    AdvancedCommerceReason(String value) {
+        this.value = value;
+    }
+
+    public static AdvancedCommerceReason fromValue(String value) {
+        for (AdvancedCommerceReason b : AdvancedCommerceReason.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+}
