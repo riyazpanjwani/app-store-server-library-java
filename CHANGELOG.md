@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 4.0.0
+- Support Retention Messaging API [https://github.com/apple/app-store-server-library-java/pull/198]
+  - This changes internal details of BaseAppStoreServerAPIClient, which is a breaking change for subclassing clients
+- Incorporate changes for App Store Server API v1.17 [https://github.com/apple/app-store-server-library-java/pull/201] from @riyazpanjwani
+- Add a new VerificationStatus case for retryable OCSP network failures [https://github.com/apple/app-store-server-library-java/pull/204]
+- Incorporate changes for App Store Server API v1.18 [https://github.com/apple/app-store-server-library-java/pull/209] from @izanger
+  - This changes OfferType's case SUBSCRIPTION_OFFER_CODE to OFFER_CODE, which is a breaking change
+
 ## Version 3.6.0
 - Testing new Maven Central deployment process [https://github.com/apple/app-store-server-library-java/pull/185]
 
