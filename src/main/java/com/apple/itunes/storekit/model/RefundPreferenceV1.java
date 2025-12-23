@@ -8,7 +8,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * A value that indicates your preferred outcome for the refund request.
  *
  * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/refundpreferencev1">refundPreferenceV1</a>
+ * @deprecated Use {@link RefundPreference} instead.
  */
+@Deprecated
 public enum RefundPreferenceV1 {
 
     UNDECLARED(0),

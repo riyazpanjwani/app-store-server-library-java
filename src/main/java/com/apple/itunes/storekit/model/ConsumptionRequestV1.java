@@ -13,7 +13,9 @@ import java.util.UUID;
  * The request body containing consumption information.
  *
  * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/consumptionrequestv1">ConsumptionRequestV1</a>
+ * @deprecated Use {@link ConsumptionRequest} instead.
  */
+@Deprecated
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ConsumptionRequestV1 {
     private static final String SERIALIZED_NAME_CUSTOMER_CONSENTED = "customerConsented";

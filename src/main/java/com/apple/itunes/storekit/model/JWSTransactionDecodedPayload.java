@@ -46,7 +46,6 @@ public class JWSTransactionDecodedPayload implements DecodedSignedData {
     private static final String SERIALIZED_NAME_OFFER_PERIOD = "offerPeriod";
     private static final String SERIALIZED_NAME_REVOCATION_TYPE = "revocationType";
     private static final String SERIALIZED_NAME_REVOCATION_PERCENTAGE = "revocationPercentage";
-    private static final String SERIALIZED_NAME_PREVIOUS_ORIGINAL_TRANSACTION_ID = "previousOriginalTransactionId";
     @JsonProperty(SERIALIZED_NAME_ORIGINAL_TRANSACTION_ID)
     private String originalTransactionId;
     @JsonProperty(SERIALIZED_NAME_TRANSACTION_ID)
@@ -112,8 +111,6 @@ public class JWSTransactionDecodedPayload implements DecodedSignedData {
     private String revocationType;
     @JsonProperty(SERIALIZED_NAME_REVOCATION_PERCENTAGE)
     private Integer revocationPercentage;
-    @JsonProperty(SERIALIZED_NAME_PREVIOUS_ORIGINAL_TRANSACTION_ID)
-    private String previousOriginalTransactionId;
     @JsonAnySetter
     private Map<String, Object> unknownFields;
 
@@ -779,25 +776,6 @@ public class JWSTransactionDecodedPayload implements DecodedSignedData {
         this.revocationPercentage = revocationPercentage;
     }
 
-    public JWSTransactionDecodedPayload previousOriginalTransactionId(String previousOriginalTransactionId) {
-        this.previousOriginalTransactionId = previousOriginalTransactionId;
-        return this;
-    }
-
-    /**
-     * The original transaction identifier of a subscription before migration.
-     *
-     * @return previousOriginalTransactionId
-     * @see <a href="https://developer.apple.com/documentation/appstoreservernotifications/previousoriginaltransactionid">previousOriginalTransactionId</a>
-     **/
-    public String getPreviousOriginalTransactionId() {
-        return previousOriginalTransactionId;
-    }
-
-    public void setPreviousOriginalTransactionId(String previousOriginalTransactionId) {
-        this.previousOriginalTransactionId = previousOriginalTransactionId;
-    }
-
     public JWSTransactionDecodedPayload unknownFields(Map<String, Object> unknownFields) {
         this.unknownFields = unknownFields;
         return this;
@@ -821,12 +799,12 @@ public class JWSTransactionDecodedPayload implements DecodedSignedData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JWSTransactionDecodedPayload that = (JWSTransactionDecodedPayload) o;
-        return Objects.equals(originalTransactionId, that.originalTransactionId) && Objects.equals(transactionId, that.transactionId) && Objects.equals(webOrderLineItemId, that.webOrderLineItemId) && Objects.equals(bundleId, that.bundleId) && Objects.equals(productId, that.productId) && Objects.equals(subscriptionGroupIdentifier, that.subscriptionGroupIdentifier) && Objects.equals(purchaseDate, that.purchaseDate) && Objects.equals(originalPurchaseDate, that.originalPurchaseDate) && Objects.equals(expiresDate, that.expiresDate) && Objects.equals(quantity, that.quantity) && Objects.equals(type, that.type) && Objects.equals(appAccountToken, that.appAccountToken) && Objects.equals(inAppOwnershipType, that.inAppOwnershipType) && Objects.equals(signedDate, that.signedDate) && Objects.equals(revocationReason, that.revocationReason) && Objects.equals(revocationDate, that.revocationDate) && Objects.equals(isUpgraded, that.isUpgraded) && Objects.equals(offerType, that.offerType) && Objects.equals(offerIdentifier, that.offerIdentifier) && Objects.equals(environment, that.environment) && Objects.equals(storefront, that.storefront) && Objects.equals(storefrontId, that.storefrontId) && Objects.equals(transactionReason, that.transactionReason) && Objects.equals(price, that.price) && Objects.equals(currency, that.currency) && Objects.equals(offerDiscountType, that.offerDiscountType) && Objects.equals(appTransactionId, that.appTransactionId) && Objects.equals(offerPeriod, that.offerPeriod) && Objects.equals(revocationType, that.revocationType) && Objects.equals(revocationPercentage, that.revocationPercentage) && Objects.equals(previousOriginalTransactionId, that.previousOriginalTransactionId) && Objects.equals(unknownFields, that.unknownFields);
+        return Objects.equals(originalTransactionId, that.originalTransactionId) && Objects.equals(transactionId, that.transactionId) && Objects.equals(webOrderLineItemId, that.webOrderLineItemId) && Objects.equals(bundleId, that.bundleId) && Objects.equals(productId, that.productId) && Objects.equals(subscriptionGroupIdentifier, that.subscriptionGroupIdentifier) && Objects.equals(purchaseDate, that.purchaseDate) && Objects.equals(originalPurchaseDate, that.originalPurchaseDate) && Objects.equals(expiresDate, that.expiresDate) && Objects.equals(quantity, that.quantity) && Objects.equals(type, that.type) && Objects.equals(appAccountToken, that.appAccountToken) && Objects.equals(inAppOwnershipType, that.inAppOwnershipType) && Objects.equals(signedDate, that.signedDate) && Objects.equals(revocationReason, that.revocationReason) && Objects.equals(revocationDate, that.revocationDate) && Objects.equals(isUpgraded, that.isUpgraded) && Objects.equals(offerType, that.offerType) && Objects.equals(offerIdentifier, that.offerIdentifier) && Objects.equals(environment, that.environment) && Objects.equals(storefront, that.storefront) && Objects.equals(storefrontId, that.storefrontId) && Objects.equals(transactionReason, that.transactionReason) && Objects.equals(price, that.price) && Objects.equals(currency, that.currency) && Objects.equals(offerDiscountType, that.offerDiscountType) && Objects.equals(appTransactionId, that.appTransactionId) && Objects.equals(offerPeriod, that.offerPeriod) && Objects.equals(revocationType, that.revocationType) && Objects.equals(revocationPercentage, that.revocationPercentage) && Objects.equals(unknownFields, that.unknownFields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(originalTransactionId, transactionId, webOrderLineItemId, bundleId, productId, subscriptionGroupIdentifier, purchaseDate, originalPurchaseDate, expiresDate, quantity, type, appAccountToken, inAppOwnershipType, signedDate, revocationReason, revocationDate, isUpgraded, offerType, offerIdentifier, environment, storefront, storefrontId, transactionReason, price, currency, offerDiscountType, appTransactionId, offerPeriod, revocationType, revocationPercentage, previousOriginalTransactionId, unknownFields);
+        return Objects.hash(originalTransactionId, transactionId, webOrderLineItemId, bundleId, productId, subscriptionGroupIdentifier, purchaseDate, originalPurchaseDate, expiresDate, quantity, type, appAccountToken, inAppOwnershipType, signedDate, revocationReason, revocationDate, isUpgraded, offerType, offerIdentifier, environment, storefront, storefrontId, transactionReason, price, currency, offerDiscountType, appTransactionId, offerPeriod, revocationType, revocationPercentage, unknownFields);
     }
 
     @Override
@@ -862,7 +840,6 @@ public class JWSTransactionDecodedPayload implements DecodedSignedData {
                 ", offerPeriod='" + offerPeriod + '\'' +
                 ", revocationType='" + revocationType + '\'' +
                 ", revocationPercentage=" + revocationPercentage +
-                ", previousOriginalTransactionId='" + previousOriginalTransactionId + '\'' +
                 ", unknownFields=" + unknownFields +
                 '}';
     }

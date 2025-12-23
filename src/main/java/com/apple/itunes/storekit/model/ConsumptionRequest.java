@@ -31,12 +31,18 @@ public class ConsumptionRequest {
     @JsonProperty(value = SERIALIZED_NAME_SAMPLE_CONTENT_PROVIDED, required = true)
     private boolean sampleContentProvided;
 
-    public ConsumptionRequest() {
+    private ConsumptionRequest() {
     }
 
     public ConsumptionRequest(boolean customerConsented, DeliveryStatus deliveryStatus, boolean sampleContentProvided) {
         this.customerConsented = customerConsented;
-        this.deliveryStatus = deliveryStatus.getValue();
+        this.deliveryStatus = Objects.requireNonNull(deliveryStatus).getValue();
+        this.sampleContentProvided = sampleContentProvided;
+    }
+
+    public ConsumptionRequest(boolean customerConsented, String rawDeliveryStatus, boolean sampleContentProvided) {
+        this.customerConsented = customerConsented;
+        this.deliveryStatus = Objects.requireNonNull(rawDeliveryStatus);
         this.sampleContentProvided = sampleContentProvided;
     }
 
@@ -65,7 +71,7 @@ public class ConsumptionRequest {
     }
 
     /**
-     * A value that indicates the extent to which the customer consumed the in-app purchase, measured in milliunits (0-100000).
+     * An integer that indicates the percentage, in milliunits, of the In-App Purchase the customer consumed.
      *
      * @return consumptionPercentage
      * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/consumptionpercentage">consumptionPercentage</a>
@@ -79,7 +85,7 @@ public class ConsumptionRequest {
     }
 
     public ConsumptionRequest deliveryStatus(DeliveryStatus deliveryStatus) {
-        this.deliveryStatus = deliveryStatus.getValue();
+        this.deliveryStatus = Objects.requireNonNull(deliveryStatus).getValue();
         return this;
     }
 
@@ -101,11 +107,11 @@ public class ConsumptionRequest {
     }
 
     public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
-        this.deliveryStatus = deliveryStatus.getValue();
+        this.deliveryStatus =  Objects.requireNonNull(deliveryStatus).getValue();
     }
 
     public void setRawDeliveryStatus(String rawDeliveryStatus) {
-        this.deliveryStatus = rawDeliveryStatus;
+        this.deliveryStatus = Objects.requireNonNull(rawDeliveryStatus);
     }
 
     public ConsumptionRequest refundPreference(RefundPreference refundPreference) {
@@ -114,7 +120,7 @@ public class ConsumptionRequest {
     }
 
     /**
-     * A value that indicates your preference, based on your operational logic, as to whether Apple should grant the refund.
+     * A value that indicates your preferred outcome for the refund request.
      *
      * @return refundPreference
      * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/refundpreference">refundPreference</a>
@@ -131,11 +137,11 @@ public class ConsumptionRequest {
     }
 
     public void setRefundPreference(RefundPreference refundPreference) {
-        this.refundPreference = refundPreference != null ? refundPreference.getValue() : null;
+        this.refundPreference = Objects.requireNonNull(refundPreference).getValue();
     }
 
     public void setRawRefundPreference(String rawRefundPreference) {
-        this.refundPreference = rawRefundPreference;
+        this.refundPreference = Objects.requireNonNull(rawRefundPreference);
     }
 
     public ConsumptionRequest sampleContentProvided(boolean sampleContentProvided) {

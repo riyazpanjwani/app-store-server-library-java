@@ -8,7 +8,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * A value that indicates whether the app successfully delivered an in-app purchase that works properly.
  *
  * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/deliverystatusv1">deliveryStatus</a>
+ * @deprecated Use {@link DeliveryStatus} instead.
  */
+@Deprecated
 public enum DeliveryStatusV1 {
 
     DELIVERED_AND_WORKING_PROPERLY(0),

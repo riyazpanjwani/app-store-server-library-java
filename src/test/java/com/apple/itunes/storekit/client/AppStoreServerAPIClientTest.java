@@ -1006,18 +1006,15 @@ public class AppStoreServerAPIClientTest {
             Assertions.assertFalse((Boolean) root.get("sampleContentProvided"));
         });
 
-        ConsumptionRequest consumptionRequest = new ConsumptionRequest()
-                .customerConsented(true)
+        ConsumptionRequest consumptionRequest = new ConsumptionRequest(true, DeliveryStatus.DELIVERED, false)
                 .consumptionPercentage(50000)  // 50% in milliunits
-                .deliveryStatus(DeliveryStatus.DELIVERED)
-                .refundPreference(RefundPreference.GRANT_FULL)
-                .sampleContentProvided(false);
+                .refundPreference(RefundPreference.GRANT_FULL);
 
         client.sendConsumptionInformation("49571273", consumptionRequest);
     }
 
     @Test
-    public void testSendConsumptionInformationWithOptionalFields() throws APIException, IOException {
+    public void testSendConsumptionInformationWithoutOptionalFields() throws APIException, IOException {
         AppStoreServerAPIClient client = getAppStoreServerAPIClient("", request -> {
             Assertions.assertEquals("PUT", request.method());
             Assertions.assertEquals("/inApps/v2/transactions/consumption/49571273", request.url().encodedPath());
@@ -1044,10 +1041,7 @@ public class AppStoreServerAPIClientTest {
             Assertions.assertNull(root.get("refundPreference"));
         });
 
-        ConsumptionRequest consumptionRequest = new ConsumptionRequest()
-                .customerConsented(true)
-                .deliveryStatus(DeliveryStatus.UNDELIVERED_QUALITY_ISSUE)
-                .sampleContentProvided(true);
+        ConsumptionRequest consumptionRequest = new ConsumptionRequest(true, DeliveryStatus.UNDELIVERED_QUALITY_ISSUE, true);
 
         client.sendConsumptionInformation("49571273", consumptionRequest);
     }

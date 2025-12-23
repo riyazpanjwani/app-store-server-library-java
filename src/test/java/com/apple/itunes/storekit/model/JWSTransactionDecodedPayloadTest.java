@@ -21,7 +21,6 @@ public class JWSTransactionDecodedPayloadTest {
         JWSTransactionDecodedPayload transaction = TestingUtility.getSignedPayloadVerifier().verifyAndDecodeTransaction(signedTransaction);
 
         Assertions.assertEquals("12345", transaction.getOriginalTransactionId());
-        Assertions.assertEquals("11111", transaction.getPreviousOriginalTransactionId());
         Assertions.assertEquals("23456", transaction.getTransactionId());
         Assertions.assertEquals("34343", transaction.getWebOrderLineItemId());
         Assertions.assertEquals("com.example", transaction.getBundleId());

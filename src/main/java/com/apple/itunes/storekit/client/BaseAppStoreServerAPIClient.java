@@ -366,7 +366,7 @@ public abstract class BaseAppStoreServerAPIClient {
      * @param consumptionRequest    The request body containing consumption information.
      * @throws APIException If a response was returned indicating the request could not be processed
      * @throws IOException  If an exception was thrown while making the request
-     * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/send_consumption_information">Send Consumption Information V1</a>
+     * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/send-consumption-information-v1">Send Consumption Information V1</a>
      * @deprecated Use {@link #sendConsumptionInformation(String, ConsumptionRequest)} instead
      */
     @Deprecated

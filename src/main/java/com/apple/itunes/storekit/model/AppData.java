@@ -39,7 +39,7 @@ public class AppData {
     }
 
     /**
-     * The unique identifier of the app that the notification applies to. This property is available for apps that users download from the App Store. It isn’t present in the sandbox environment.
+     * The unique identifier of the app that the notification applies to.
      *
      * @return appAppleId
      * @see <a href="https://developer.apple.com/documentation/appstoreservernotifications/appappleid">appAppleId</a>
