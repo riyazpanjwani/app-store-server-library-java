@@ -21,14 +21,14 @@ public abstract class AbstractAdvancedCommerceItem extends AbstractAdvancedComme
 
     protected AbstractAdvancedCommerceItem(String sku, String description, String displayName) {
         super(sku);
-        this.description = AdvancedCommerceValidationUtils.validateDescription(description);
-        this.displayName = AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.description = HelperValidationUtils.validateDescription(description);
+        this.displayName = HelperValidationUtils.validateDisplayName(displayName);
     }
 
     protected abstract AbstractAdvancedCommerceItem self();
 
     public AbstractAdvancedCommerceItem description(String description) {
-        this.description = AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = HelperValidationUtils.validateDescription(description);
         return self();
     }
 
@@ -43,11 +43,11 @@ public abstract class AbstractAdvancedCommerceItem extends AbstractAdvancedComme
     }
 
     public void setDescription(String description) {
-        this.description = AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = HelperValidationUtils.validateDescription(description);
     }
 
     public AbstractAdvancedCommerceItem displayName(String displayName) {
-        this.displayName = AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = HelperValidationUtils.validateDisplayName(displayName);
         return self();
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractAdvancedCommerceItem extends AbstractAdvancedComme
     }
 
     public void setDisplayName(String displayName) {
-        this.displayName = AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = HelperValidationUtils.validateDisplayName(displayName);
     }
 
     @Override

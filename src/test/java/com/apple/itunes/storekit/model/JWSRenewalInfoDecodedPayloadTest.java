@@ -48,5 +48,38 @@ public class JWSRenewalInfoDecodedPayloadTest {
         Assertions.assertEquals("71134", renewalInfo.getAppTransactionId());
         Assertions.assertEquals("P1Y", renewalInfo.getOfferPeriod());
         Assertions.assertEquals(UUID.fromString("7e3fb20b-4cdb-47cc-936d-99d65f608138"), renewalInfo.getAppAccountToken());
+        Assertions.assertNotNull(renewalInfo.getAdvancedCommerceInfo());
+        AdvancedCommerceRenewalInfo acInfo = renewalInfo.getAdvancedCommerceInfo();
+        Assertions.assertEquals("token-abc-123", acInfo.getConsistencyToken());
+        Assertions.assertNotNull(acInfo.getDescriptors());
+        Assertions.assertEquals("Premium Plan", acInfo.getDescriptors().getDescription());
+        Assertions.assertEquals("Premium", acInfo.getDescriptors().getDisplayName());
+        Assertions.assertEquals(AdvancedCommercePeriod.P1M, acInfo.getPeriod());
+        Assertions.assertEquals("P1M", acInfo.getRawPeriod());
+        Assertions.assertEquals("ref-12345", acInfo.getRequestReferenceId());
+        Assertions.assertEquals("TAX_CODE_1", acInfo.getTaxCode());
+        Assertions.assertNotNull(acInfo.getItems());
+        Assertions.assertEquals(1, acInfo.getItems().size());
+        AdvancedCommerceRenewalItem item = acInfo.getItems().get(0);
+        Assertions.assertEquals("com.example.sku.premium", item.getSku());
+        Assertions.assertEquals("Premium feature", item.getDescription());
+        Assertions.assertEquals("Premium Feature", item.getDisplayName());
+        Assertions.assertEquals(9990L, item.getPrice());
+        Assertions.assertNotNull(item.getPriceIncreaseInfo());
+        Assertions.assertEquals(List.of("com.example.sku.1", "com.example.sku.2"), item.getPriceIncreaseInfo().getDependentSKUs());
+        Assertions.assertEquals(12990L, item.getPriceIncreaseInfo().getPrice());
+        Assertions.assertEquals(AdvancedCommercePriceIncreaseInfoStatus.PENDING, item.getPriceIncreaseInfo().getStatus());
+        Assertions.assertEquals("PENDING", item.getPriceIncreaseInfo().getRawStatus());
+        Assertions.assertNotNull(renewalInfo.getCommitmentInfo());
+        RenewalCommitmentInfo commitment = renewalInfo.getCommitmentInfo();
+        Assertions.assertEquals("com.example.product.commitment", commitment.getCommitmentAutoRenewProductId());
+        Assertions.assertEquals(AutoRenewStatus.ON, commitment.getCommitmentAutoRenewStatus());
+        Assertions.assertEquals(1, commitment.getRawCommitmentAutoRenewStatus());
+        Assertions.assertEquals(RenewalBillingPlanType.MONTHLY, commitment.getCommitmentRenewalBillingPlanType());
+        Assertions.assertEquals("MONTHLY", commitment.getRawCommitmentRenewalBillingPlanType());
+        Assertions.assertEquals(1698149500000L, commitment.getCommitmentRenewalDate());
+        Assertions.assertEquals(9990L, commitment.getCommitmentRenewalPrice());
+        Assertions.assertEquals(RenewalBillingPlanType.MONTHLY, renewalInfo.getRenewalBillingPlanType());
+        Assertions.assertEquals("MONTHLY", renewalInfo.getRawRenewalBillingPlanType());
     }
 }

@@ -42,7 +42,7 @@ public class AdvancedCommerceSubscriptionMigrateRequest extends AdvancedCommerce
     public AdvancedCommerceSubscriptionMigrateRequest(AdvancedCommerceRequestInfo requestInfo, AdvancedCommerceSubscriptionMigrateDescriptors descriptors, List<AdvancedCommerceSubscriptionMigrateItem> items, String targetProductId, String taxCode) {
         super(requestInfo);
         this.descriptors = Objects.requireNonNull(descriptors);
-        this.items = AdvancedCommerceValidationUtils.validateItems(items);
+        this.items = HelperValidationUtils.validateItems(items);
         this.targetProductId = Objects.requireNonNull(targetProductId);
         this.taxCode = Objects.requireNonNull(taxCode);
     }
@@ -65,7 +65,7 @@ public class AdvancedCommerceSubscriptionMigrateRequest extends AdvancedCommerce
     }
 
     public AdvancedCommerceSubscriptionMigrateRequest items(List<AdvancedCommerceSubscriptionMigrateItem> items) {
-        this.items = AdvancedCommerceValidationUtils.validateItems(items);
+        this.items = HelperValidationUtils.validateItems(items);
         return this;
     }
 
@@ -86,11 +86,11 @@ public class AdvancedCommerceSubscriptionMigrateRequest extends AdvancedCommerce
     }
 
     public void setItems(List<AdvancedCommerceSubscriptionMigrateItem> items) {
-        this.items = AdvancedCommerceValidationUtils.validateItems(items);
+        this.items = HelperValidationUtils.validateItems(items);
     }
 
     public AdvancedCommerceSubscriptionMigrateRequest renewalItems(List<AdvancedCommerceSubscriptionMigrateRenewalItem> renewalItems) {
-        this.renewalItems = renewalItems != null ? AdvancedCommerceValidationUtils.validateItems(renewalItems) : null;
+        this.renewalItems = renewalItems != null ? HelperValidationUtils.validateItems(renewalItems) : null;
         return this;
     }
 
@@ -114,7 +114,7 @@ public class AdvancedCommerceSubscriptionMigrateRequest extends AdvancedCommerce
     }
 
     public void setRenewalItems(List<AdvancedCommerceSubscriptionMigrateRenewalItem> renewalItems) {
-        this.renewalItems = renewalItems != null ? AdvancedCommerceValidationUtils.validateItems(renewalItems) : null;
+        this.renewalItems = renewalItems != null ? HelperValidationUtils.validateItems(renewalItems) : null;
     }
 
 

@@ -131,64 +131,64 @@ public class AdvancedCommerceModelsTest {
     @Test
     public void testValidationUtilsDescription() {
         String validDescription = "Valid description";
-        Assertions.assertEquals(validDescription, AdvancedCommerceValidationUtils.validateDescription(validDescription));
+        Assertions.assertEquals(validDescription, HelperValidationUtils.validateDescription(validDescription));
 
         String maxLengthDescription = "A".repeat(45);
         Assertions.assertEquals(maxLengthDescription,
-            AdvancedCommerceValidationUtils.validateDescription(maxLengthDescription));
+            HelperValidationUtils.validateDescription(maxLengthDescription));
 
         String tooLongDescription = "A".repeat(46);
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validateDescription(tooLongDescription));
+            () -> HelperValidationUtils.validateDescription(tooLongDescription));
 
         Assertions.assertThrows(NullPointerException.class,
-            () -> AdvancedCommerceValidationUtils.validateDescription(null));
+            () -> HelperValidationUtils.validateDescription(null));
     }
 
     @Test
     public void testValidationUtilsDisplayName() {
         String validDisplayName = "Valid Name";
-        Assertions.assertEquals(validDisplayName, AdvancedCommerceValidationUtils.validateDisplayName(validDisplayName));
+        Assertions.assertEquals(validDisplayName, HelperValidationUtils.validateDisplayName(validDisplayName));
 
         String maxLengthDisplayName = "A".repeat(30);
         Assertions.assertEquals(maxLengthDisplayName,
-            AdvancedCommerceValidationUtils.validateDisplayName(maxLengthDisplayName));
+            HelperValidationUtils.validateDisplayName(maxLengthDisplayName));
 
         String tooLongDisplayName = "A".repeat(31);
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validateDisplayName(tooLongDisplayName));
+            () -> HelperValidationUtils.validateDisplayName(tooLongDisplayName));
 
         Assertions.assertThrows(NullPointerException.class,
-            () -> AdvancedCommerceValidationUtils.validateDisplayName(null));
+            () -> HelperValidationUtils.validateDisplayName(null));
     }
 
     @Test
     public void testValidationUtilsSku() {
         String validSku = "valid.sku.123";
-        Assertions.assertEquals(validSku, AdvancedCommerceValidationUtils.validateSku(validSku));
+        Assertions.assertEquals(validSku, HelperValidationUtils.validateSku(validSku));
 
         String maxLengthSku = "A".repeat(128);
-        Assertions.assertEquals(maxLengthSku, AdvancedCommerceValidationUtils.validateSku(maxLengthSku));
+        Assertions.assertEquals(maxLengthSku, HelperValidationUtils.validateSku(maxLengthSku));
 
         String tooLongSku = "A".repeat(129);
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validateSku(tooLongSku));
+            () -> HelperValidationUtils.validateSku(tooLongSku));
 
-        Assertions.assertNull(AdvancedCommerceValidationUtils.validateSku(null));
+        Assertions.assertNull(HelperValidationUtils.validateSku(null));
     }
 
     @Test
     public void testValidationUtilsPeriodCount() {
-        Assertions.assertEquals(1, AdvancedCommerceValidationUtils.validatePeriodCount(1));
-        Assertions.assertEquals(6, AdvancedCommerceValidationUtils.validatePeriodCount(6));
-        Assertions.assertEquals(12, AdvancedCommerceValidationUtils.validatePeriodCount(12));
+        Assertions.assertEquals(1, HelperValidationUtils.validatePeriodCount(1));
+        Assertions.assertEquals(6, HelperValidationUtils.validatePeriodCount(6));
+        Assertions.assertEquals(12, HelperValidationUtils.validatePeriodCount(12));
 
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validatePeriodCount(0));
+            () -> HelperValidationUtils.validatePeriodCount(0));
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validatePeriodCount(13));
+            () -> HelperValidationUtils.validatePeriodCount(13));
         Assertions.assertThrows(NullPointerException.class,
-            () -> AdvancedCommerceValidationUtils.validatePeriodCount(null));
+            () -> HelperValidationUtils.validatePeriodCount(null));
     }
 
     @Test
@@ -196,17 +196,17 @@ public class AdvancedCommerceModelsTest {
         List<AdvancedCommerceOneTimeChargeItem> validList = Arrays.asList(
             new AdvancedCommerceOneTimeChargeItem("desc", "name", "sku1", 1000L)
         );
-        Assertions.assertEquals(validList, AdvancedCommerceValidationUtils.validateItems(validList));
+        Assertions.assertEquals(validList, HelperValidationUtils.validateItems(validList));
 
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validateItems(null));
+            () -> HelperValidationUtils.validateItems(null));
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validateItems(new ArrayList<>()));
+            () -> HelperValidationUtils.validateItems(new ArrayList<>()));
 
         List<AdvancedCommerceOneTimeChargeItem> listWithNull = new ArrayList<>();
         listWithNull.add(null);
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> AdvancedCommerceValidationUtils.validateItems(listWithNull));
+            () -> HelperValidationUtils.validateItems(listWithNull));
     }
 
     @Test
@@ -641,6 +641,75 @@ public class AdvancedCommerceModelsTest {
         Assertions.assertEquals("consistency_token_value", requestInfo.consistencyToken());
     }
 
+
+    @Test
+    public void testAdvancedCommercePriceIncreaseInfoStatus() {
+        Assertions.assertEquals("SCHEDULED", AdvancedCommercePriceIncreaseInfoStatus.SCHEDULED.getValue());
+        Assertions.assertEquals("PENDING", AdvancedCommercePriceIncreaseInfoStatus.PENDING.getValue());
+        Assertions.assertEquals("ACCEPTED", AdvancedCommercePriceIncreaseInfoStatus.ACCEPTED.getValue());
+
+        Assertions.assertEquals(AdvancedCommercePriceIncreaseInfoStatus.SCHEDULED,
+            AdvancedCommercePriceIncreaseInfoStatus.fromValue("SCHEDULED"));
+        Assertions.assertEquals(AdvancedCommercePriceIncreaseInfoStatus.PENDING,
+            AdvancedCommercePriceIncreaseInfoStatus.fromValue("PENDING"));
+        Assertions.assertEquals(AdvancedCommercePriceIncreaseInfoStatus.ACCEPTED,
+            AdvancedCommercePriceIncreaseInfoStatus.fromValue("ACCEPTED"));
+        Assertions.assertNull(AdvancedCommercePriceIncreaseInfoStatus.fromValue("INVALID"));
+
+        Assertions.assertEquals("SCHEDULED", AdvancedCommercePriceIncreaseInfoStatus.SCHEDULED.toString());
+    }
+
+
+    @Test
+    public void testBillingPlanType() {
+        Assertions.assertEquals("BILLED_UPFRONT", BillingPlanType.BILLED_UPFRONT.getValue());
+        Assertions.assertEquals("MONTHLY", BillingPlanType.MONTHLY.getValue());
+
+        Assertions.assertEquals(BillingPlanType.BILLED_UPFRONT,
+            BillingPlanType.fromValue("BILLED_UPFRONT"));
+        Assertions.assertEquals(BillingPlanType.MONTHLY,
+            BillingPlanType.fromValue("MONTHLY"));
+        Assertions.assertNull(BillingPlanType.fromValue("INVALID"));
+
+        Assertions.assertEquals("MONTHLY", BillingPlanType.MONTHLY.toString());
+    }
+
+
+    @Test
+    public void testRenewalBillingPlanType() {
+        Assertions.assertEquals("BILLED_UPFRONT", RenewalBillingPlanType.BILLED_UPFRONT.getValue());
+        Assertions.assertEquals("MONTHLY", RenewalBillingPlanType.MONTHLY.getValue());
+
+        Assertions.assertEquals(RenewalBillingPlanType.BILLED_UPFRONT,
+            RenewalBillingPlanType.fromValue("BILLED_UPFRONT"));
+        Assertions.assertEquals(RenewalBillingPlanType.MONTHLY,
+            RenewalBillingPlanType.fromValue("MONTHLY"));
+        Assertions.assertNull(RenewalBillingPlanType.fromValue("INVALID"));
+
+        Assertions.assertEquals("BILLED_UPFRONT", RenewalBillingPlanType.BILLED_UPFRONT.toString());
+    }
+
+
+    @Test
+    public void testTransactionCommitmentInfoBillingPeriodNumberValidation() {
+        TransactionCommitmentInfo info = new TransactionCommitmentInfo();
+
+        info.setBillingPeriodNumber(1);
+        Assertions.assertEquals(1, info.getBillingPeriodNumber());
+
+        info.setBillingPeriodNumber(12);
+        Assertions.assertEquals(12, info.getBillingPeriodNumber());
+
+        info.setBillingPeriodNumber(null);
+        Assertions.assertNull(info.getBillingPeriodNumber());
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> new TransactionCommitmentInfo().billingPeriodNumber(0));
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> new TransactionCommitmentInfo().billingPeriodNumber(13));
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> new TransactionCommitmentInfo().setBillingPeriodNumber(-1));
+    }
 
     @Test
     public void testAdvancedCommerceSubscriptionMigrateResponse() throws Exception {

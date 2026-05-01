@@ -41,14 +41,14 @@ public class AdvancedCommerceSubscriptionModifyChangeItem extends AbstractAdvanc
 
     public AdvancedCommerceSubscriptionModifyChangeItem(String currentSKU, String description, String displayName, AdvancedCommerceEffective effective, Long price, AdvancedCommerceReason reason, String sku) {
         super(sku, description, displayName);
-        this.currentSKU = AdvancedCommerceValidationUtils.validateSku(currentSKU);
+        this.currentSKU = HelperValidationUtils.validateSku(currentSKU);
         this.effective = Objects.requireNonNull(effective);
         this.price = Objects.requireNonNull(price);
         this.reason = Objects.requireNonNull(reason);
     }
 
     public AdvancedCommerceSubscriptionModifyChangeItem currentSKU(String currentSKU) {
-        this.currentSKU = AdvancedCommerceValidationUtils.validateSku(currentSKU);
+        this.currentSKU = HelperValidationUtils.validateSku(currentSKU);
         return this;
     }
 
@@ -61,7 +61,7 @@ public class AdvancedCommerceSubscriptionModifyChangeItem extends AbstractAdvanc
     }
 
     public void setCurrentSKU(String currentSKU) {
-        this.currentSKU = AdvancedCommerceValidationUtils.validateSku(currentSKU);
+        this.currentSKU = HelperValidationUtils.validateSku(currentSKU);
     }
 
     public AdvancedCommerceSubscriptionModifyChangeItem effective(AdvancedCommerceEffective effective) {

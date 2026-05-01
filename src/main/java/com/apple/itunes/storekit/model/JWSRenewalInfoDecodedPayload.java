@@ -39,6 +39,9 @@ public class JWSRenewalInfoDecodedPayload implements DecodedSignedData {
     private static final String SERIALIZED_NAME_APP_TRANSACTION_ID = "appTransactionId";
     private static final String SERIALIZED_NAME_OFFER_PERIOD = "offerPeriod";
     private static final String SERIALIZED_NAME_APP_ACCOUNT_TOKEN = "appAccountToken";
+    private static final String SERIALIZED_NAME_ADVANCED_COMMERCE_INFO = "advancedCommerceInfo";
+    private static final String SERIALIZED_NAME_COMMITMENT_INFO = "commitmentInfo";
+    private static final String SERIALIZED_NAME_RENEWAL_BILLING_PLAN_TYPE = "renewalBillingPlanType";
     @JsonProperty(SERIALIZED_NAME_EXPIRATION_INTENT)
     private Integer expirationIntent;
     @JsonProperty(SERIALIZED_NAME_ORIGINAL_TRANSACTION_ID)
@@ -85,6 +88,12 @@ public class JWSRenewalInfoDecodedPayload implements DecodedSignedData {
     private String offerPeriod;
     @JsonProperty(SERIALIZED_NAME_APP_ACCOUNT_TOKEN)
     private UUID appAccountToken;
+    @JsonProperty(SERIALIZED_NAME_ADVANCED_COMMERCE_INFO)
+    private AdvancedCommerceRenewalInfo advancedCommerceInfo;
+    @JsonProperty(SERIALIZED_NAME_COMMITMENT_INFO)
+    private RenewalCommitmentInfo commitmentInfo;
+    @JsonProperty(SERIALIZED_NAME_RENEWAL_BILLING_PLAN_TYPE)
+    private String renewalBillingPlanType;
     @JsonAnySetter
     private Map<String, Object> unknownFields;
 
@@ -565,6 +574,70 @@ public class JWSRenewalInfoDecodedPayload implements DecodedSignedData {
         this.appAccountToken = appAccountToken;
     }
 
+    public JWSRenewalInfoDecodedPayload advancedCommerceInfo(AdvancedCommerceRenewalInfo advancedCommerceInfo) {
+        this.advancedCommerceInfo = advancedCommerceInfo;
+        return this;
+    }
+
+    /**
+     * Renewal information that is present only for Advanced Commerce SKUs.
+     *
+     * @return advancedCommerceInfo
+     * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/advancedcommercerenewalinfo">advancedCommerceRenewalInfo</a>
+     **/
+    public AdvancedCommerceRenewalInfo getAdvancedCommerceInfo() {
+        return advancedCommerceInfo;
+    }
+
+    public void setAdvancedCommerceInfo(AdvancedCommerceRenewalInfo advancedCommerceInfo) {
+        this.advancedCommerceInfo = advancedCommerceInfo;
+    }
+
+    public JWSRenewalInfoDecodedPayload commitmentInfo(RenewalCommitmentInfo commitmentInfo) {
+        this.commitmentInfo = commitmentInfo;
+        return this;
+    }
+
+    /**
+     * @return commitmentInfo
+     * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/renewalcommitmentinfo">RenewalCommitmentInfo</a>
+     **/
+    public RenewalCommitmentInfo getCommitmentInfo() {
+        return commitmentInfo;
+    }
+
+    public void setCommitmentInfo(RenewalCommitmentInfo commitmentInfo) {
+        this.commitmentInfo = commitmentInfo;
+    }
+
+    public JWSRenewalInfoDecodedPayload renewalBillingPlanType(RenewalBillingPlanType renewalBillingPlanType) {
+        this.renewalBillingPlanType = renewalBillingPlanType != null ? renewalBillingPlanType.getValue() : null;
+        return this;
+    }
+
+    /**
+     * @return renewalBillingPlanType
+     * @see <a href="https://developer.apple.com/documentation/appstoreserverapi/renewalbillingplantype">renewalBillingPlanType</a>
+     **/
+    public RenewalBillingPlanType getRenewalBillingPlanType() {
+        return renewalBillingPlanType != null ? RenewalBillingPlanType.fromValue(renewalBillingPlanType) : null;
+    }
+
+    /**
+     * @see #getRenewalBillingPlanType()
+     */
+    public String getRawRenewalBillingPlanType() {
+        return renewalBillingPlanType;
+    }
+
+    public void setRenewalBillingPlanType(RenewalBillingPlanType renewalBillingPlanType) {
+        this.renewalBillingPlanType = renewalBillingPlanType != null ? renewalBillingPlanType.getValue() : null;
+    }
+
+    public void setRawRenewalBillingPlanType(String rawRenewalBillingPlanType) {
+        this.renewalBillingPlanType = rawRenewalBillingPlanType;
+    }
+
     public JWSRenewalInfoDecodedPayload unknownFields(Map<String, Object> unknownFields) {
         this.unknownFields = unknownFields;
         return this;
@@ -588,12 +661,12 @@ public class JWSRenewalInfoDecodedPayload implements DecodedSignedData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JWSRenewalInfoDecodedPayload that = (JWSRenewalInfoDecodedPayload) o;
-        return Objects.equals(expirationIntent, that.expirationIntent) && Objects.equals(originalTransactionId, that.originalTransactionId) && Objects.equals(autoRenewProductId, that.autoRenewProductId) && Objects.equals(productId, that.productId) && Objects.equals(autoRenewStatus, that.autoRenewStatus) && Objects.equals(isInBillingRetryPeriod, that.isInBillingRetryPeriod) && Objects.equals(priceIncreaseStatus, that.priceIncreaseStatus) && Objects.equals(gracePeriodExpiresDate, that.gracePeriodExpiresDate) && Objects.equals(offerType, that.offerType) && Objects.equals(offerIdentifier, that.offerIdentifier) && Objects.equals(signedDate, that.signedDate) && Objects.equals(environment, that.environment) && Objects.equals(recentSubscriptionStartDate, that.recentSubscriptionStartDate) && Objects.equals(renewalDate, that.renewalDate) && Objects.equals(renewalPrice, that.renewalPrice) && Objects.equals(currency, that.currency) && Objects.equals(offerDiscountType, that.offerDiscountType) && Objects.equals(eligibleWinBackOfferIds, that.eligibleWinBackOfferIds) && Objects.equals(appTransactionId, that.appTransactionId) && Objects.equals(offerPeriod, that.offerPeriod) && Objects.equals(appAccountToken, that.appAccountToken) && Objects.equals(unknownFields, that.unknownFields);
+        return Objects.equals(expirationIntent, that.expirationIntent) && Objects.equals(originalTransactionId, that.originalTransactionId) && Objects.equals(autoRenewProductId, that.autoRenewProductId) && Objects.equals(productId, that.productId) && Objects.equals(autoRenewStatus, that.autoRenewStatus) && Objects.equals(isInBillingRetryPeriod, that.isInBillingRetryPeriod) && Objects.equals(priceIncreaseStatus, that.priceIncreaseStatus) && Objects.equals(gracePeriodExpiresDate, that.gracePeriodExpiresDate) && Objects.equals(offerType, that.offerType) && Objects.equals(offerIdentifier, that.offerIdentifier) && Objects.equals(signedDate, that.signedDate) && Objects.equals(environment, that.environment) && Objects.equals(recentSubscriptionStartDate, that.recentSubscriptionStartDate) && Objects.equals(renewalDate, that.renewalDate) && Objects.equals(renewalPrice, that.renewalPrice) && Objects.equals(currency, that.currency) && Objects.equals(offerDiscountType, that.offerDiscountType) && Objects.equals(eligibleWinBackOfferIds, that.eligibleWinBackOfferIds) && Objects.equals(appTransactionId, that.appTransactionId) && Objects.equals(offerPeriod, that.offerPeriod) && Objects.equals(appAccountToken, that.appAccountToken) && Objects.equals(advancedCommerceInfo, that.advancedCommerceInfo) && Objects.equals(commitmentInfo, that.commitmentInfo) && Objects.equals(renewalBillingPlanType, that.renewalBillingPlanType) && Objects.equals(unknownFields, that.unknownFields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(expirationIntent, originalTransactionId, autoRenewProductId, productId, autoRenewStatus, isInBillingRetryPeriod, priceIncreaseStatus, gracePeriodExpiresDate, offerType, offerIdentifier, signedDate, environment, recentSubscriptionStartDate, renewalDate, renewalPrice, currency, offerDiscountType, eligibleWinBackOfferIds, appTransactionId, offerPeriod, appAccountToken, unknownFields);
+        return Objects.hash(expirationIntent, originalTransactionId, autoRenewProductId, productId, autoRenewStatus, isInBillingRetryPeriod, priceIncreaseStatus, gracePeriodExpiresDate, offerType, offerIdentifier, signedDate, environment, recentSubscriptionStartDate, renewalDate, renewalPrice, currency, offerDiscountType, eligibleWinBackOfferIds, appTransactionId, offerPeriod, appAccountToken, advancedCommerceInfo, commitmentInfo, renewalBillingPlanType, unknownFields);
     }
 
     @Override
@@ -620,6 +693,9 @@ public class JWSRenewalInfoDecodedPayload implements DecodedSignedData {
                 ", appTransactionId='" + appTransactionId + '\'' +
                 ", offerPeriod='" + offerPeriod + '\'' +
                 ", appAccountToken='" + appAccountToken + '\'' +
+                ", advancedCommerceInfo=" + advancedCommerceInfo +
+                ", commitmentInfo=" + commitmentInfo +
+                ", renewalBillingPlanType='" + renewalBillingPlanType + '\'' +
                 ", unknownFields=" + unknownFields +
                 '}';
     }

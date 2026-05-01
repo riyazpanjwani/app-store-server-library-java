@@ -32,12 +32,12 @@ public class AdvancedCommerceSubscriptionChangeMetadataItem {
     private AdvancedCommerceSubscriptionChangeMetadataItem() {}
 
     public AdvancedCommerceSubscriptionChangeMetadataItem(String currentSKU, AdvancedCommerceEffective effective) {
-        this.currentSku = AdvancedCommerceValidationUtils.validateSku(currentSKU);
+        this.currentSku = HelperValidationUtils.validateSku(currentSKU);
         this.effective = Objects.requireNonNull(effective);
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataItem currentSku(String currentSku) {
-        this.currentSku = AdvancedCommerceValidationUtils.validateSku(currentSku);
+        this.currentSku = HelperValidationUtils.validateSku(currentSku);
         return this;
     }
 
@@ -52,7 +52,7 @@ public class AdvancedCommerceSubscriptionChangeMetadataItem {
     }
 
     public void setCurrentSku(String currentSku) {
-        this.currentSku = AdvancedCommerceValidationUtils.validateSku(currentSku);
+        this.currentSku = HelperValidationUtils.validateSku(currentSku);
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataItem effective(AdvancedCommerceEffective effective) {
@@ -75,7 +75,7 @@ public class AdvancedCommerceSubscriptionChangeMetadataItem {
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataItem description(String description) {
-        this.description = description == null ? null : AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = description == null ? null : HelperValidationUtils.validateDescription(description);
         return this;
     }
 
@@ -90,11 +90,11 @@ public class AdvancedCommerceSubscriptionChangeMetadataItem {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = description == null ? null : HelperValidationUtils.validateDescription(description);
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataItem displayName(String displayName) {
-        this.displayName = displayName == null ? null : AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = displayName == null ? null : HelperValidationUtils.validateDisplayName(displayName);
         return this;
     }
 
@@ -109,11 +109,11 @@ public class AdvancedCommerceSubscriptionChangeMetadataItem {
     }
 
     public void setDisplayName(String displayName) {
-        this.displayName = displayName == null ? null : AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = displayName == null ? null : HelperValidationUtils.validateDisplayName(displayName);
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataItem sku(String sku) {
-        this.sku = AdvancedCommerceValidationUtils.validateSku(sku);
+        this.sku = HelperValidationUtils.validateSku(sku);
         return this;
     }
 
@@ -128,7 +128,7 @@ public class AdvancedCommerceSubscriptionChangeMetadataItem {
     }
 
     public void setSku(String sku) {
-        this.sku = sku == null ? null : AdvancedCommerceValidationUtils.validateSku(sku);
+        this.sku = sku == null ? null : HelperValidationUtils.validateSku(sku);
     } 
 
     @Override

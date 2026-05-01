@@ -12,13 +12,13 @@ public abstract class AbstractAdvancedCommerceBaseItem {
     protected AbstractAdvancedCommerceBaseItem() {}
 
     protected AbstractAdvancedCommerceBaseItem(String sku) {
-        this.sku = AdvancedCommerceValidationUtils.validateSku(sku);
+        this.sku = HelperValidationUtils.validateSku(sku);
     }
 
     protected abstract AbstractAdvancedCommerceBaseItem self();
 
     public AbstractAdvancedCommerceBaseItem sku(String sku) {
-        this.sku = AdvancedCommerceValidationUtils.validateSku(sku);
+        this.sku = HelperValidationUtils.validateSku(sku);
         return self();
     }
 
@@ -33,7 +33,7 @@ public abstract class AbstractAdvancedCommerceBaseItem {
     }
 
     public void setSku(String sku) {
-        this.sku = AdvancedCommerceValidationUtils.validateSku(sku);
+        this.sku = HelperValidationUtils.validateSku(sku);
     }
 
 }

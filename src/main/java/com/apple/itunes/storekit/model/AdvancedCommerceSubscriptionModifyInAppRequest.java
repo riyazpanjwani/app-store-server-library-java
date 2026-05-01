@@ -67,7 +67,7 @@ public class AdvancedCommerceSubscriptionModifyInAppRequest extends AbstractAdva
     }
 
     public AdvancedCommerceSubscriptionModifyInAppRequest addItems(List<AdvancedCommerceSubscriptionModifyAddItem> addItems) {
-        this.addItems = addItems != null ? AdvancedCommerceValidationUtils.validateItems(addItems) : null;
+        this.addItems = addItems != null ? HelperValidationUtils.validateItems(addItems) : null;
         return this;
     }
 
@@ -89,11 +89,11 @@ public class AdvancedCommerceSubscriptionModifyInAppRequest extends AbstractAdva
     }
 
     public void setAddItems(List<AdvancedCommerceSubscriptionModifyAddItem> addItems) {
-        this.addItems = addItems != null ? AdvancedCommerceValidationUtils.validateItems(addItems) : null;
+        this.addItems = addItems != null ? HelperValidationUtils.validateItems(addItems) : null;
     }
 
     public AdvancedCommerceSubscriptionModifyInAppRequest changeItems(List<AdvancedCommerceSubscriptionModifyChangeItem> changeItems) {
-        this.changeItems = changeItems != null ? AdvancedCommerceValidationUtils.validateItems(changeItems) : null;
+        this.changeItems = changeItems != null ? HelperValidationUtils.validateItems(changeItems) : null;
         return this;
     }
 
@@ -115,7 +115,7 @@ public class AdvancedCommerceSubscriptionModifyInAppRequest extends AbstractAdva
     }
 
     public void setChangeItems(List<AdvancedCommerceSubscriptionModifyChangeItem> changeItems) {
-        this.changeItems = changeItems != null ? AdvancedCommerceValidationUtils.validateItems(changeItems) : null;
+        this.changeItems = changeItems != null ? HelperValidationUtils.validateItems(changeItems) : null;
     }
 
     public AdvancedCommerceSubscriptionModifyInAppRequest currency(String currency) {
