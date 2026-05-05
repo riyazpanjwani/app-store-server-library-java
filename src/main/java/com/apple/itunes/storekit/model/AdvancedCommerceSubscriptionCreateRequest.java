@@ -52,7 +52,7 @@ public class AdvancedCommerceSubscriptionCreateRequest extends AbstractAdvancedC
         super(OPERATION, VERSION, requestInfo);
         this.currency = Objects.requireNonNull(currency);
         this.descriptors = Objects.requireNonNull(descriptors);
-        this.items = AdvancedCommerceValidationUtils.validateItems(items);
+        this.items = HelperValidationUtils.validateItems(items);
         this.period = Objects.requireNonNull(period);
         this.taxCode = Objects.requireNonNull(taxCode);
     }
@@ -97,7 +97,7 @@ public class AdvancedCommerceSubscriptionCreateRequest extends AbstractAdvancedC
     }
 
     public AdvancedCommerceSubscriptionCreateRequest items(List<AdvancedCommerceSubscriptionCreateItem> items) {
-        this.items = AdvancedCommerceValidationUtils.validateItems(items);
+        this.items = HelperValidationUtils.validateItems(items);
         return this;
     }
 
@@ -116,7 +116,7 @@ public class AdvancedCommerceSubscriptionCreateRequest extends AbstractAdvancedC
     }
 
     public void setItems(List<AdvancedCommerceSubscriptionCreateItem> items) {
-        this.items = AdvancedCommerceValidationUtils.validateItems(items);
+        this.items = HelperValidationUtils.validateItems(items);
     }
 
     public AdvancedCommerceSubscriptionCreateRequest period(AdvancedCommercePeriod period) {

@@ -49,7 +49,7 @@ public class AdvancedCommerceSubscriptionChangeMetadataDescriptors {
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataDescriptors description(String description) {
-        this.description = description == null ? null : AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = description == null ? null : HelperValidationUtils.validateDescription(description);
         return this;
     }
 
@@ -64,11 +64,11 @@ public class AdvancedCommerceSubscriptionChangeMetadataDescriptors {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = description == null ? null : HelperValidationUtils.validateDescription(description);
     }
 
     public AdvancedCommerceSubscriptionChangeMetadataDescriptors displayName(String displayName) {
-        this.displayName = displayName == null ? null : AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = displayName == null ? null : HelperValidationUtils.validateDisplayName(displayName);
         return this;
     }
 
@@ -83,7 +83,7 @@ public class AdvancedCommerceSubscriptionChangeMetadataDescriptors {
     }
 
     public void setDisplayName(String displayName) {
-        this.displayName = displayName == null ? null : AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = displayName == null ? null : HelperValidationUtils.validateDisplayName(displayName);
     }
 
     @Override

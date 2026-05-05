@@ -17,10 +17,13 @@ import java.util.UUID;
 public class AlternateProduct {
     private static final String SERIALIZED_NAME_MESSAGE_IDENTIFIER = "messageIdentifier";
     private static final String SERIALIZED_NAME_PRODUCT_ID = "productId";
+    private static final String SERIALIZED_NAME_BILLING_PLAN_TYPE = "billingPlanType";
     @JsonProperty(value = SERIALIZED_NAME_MESSAGE_IDENTIFIER)
     private UUID messageIdentifier;
     @JsonProperty(value = SERIALIZED_NAME_PRODUCT_ID)
     private String productId;
+    @JsonProperty(value = SERIALIZED_NAME_BILLING_PLAN_TYPE)
+    private String billingPlanType;
 
 
     public AlternateProduct() {
@@ -64,18 +67,47 @@ public class AlternateProduct {
         this.productId = productId;
     }
 
+    public AlternateProduct billingPlanType(BillingPlanType billingPlanType) {
+        this.billingPlanType = billingPlanType != null ? billingPlanType.getValue() : null;
+        return this;
+    }
+
+    /**
+     * @return billingPlanType
+     * @see <a href="https://developer.apple.com/documentation/retentionmessaging/billingplantype">billingPlanType</a>
+     **/
+    public BillingPlanType getBillingPlanType() {
+        return billingPlanType != null ? BillingPlanType.fromValue(billingPlanType) : null;
+    }
+
+    /**
+     * @see #getBillingPlanType()
+     */
+    public String getRawBillingPlanType() {
+        return billingPlanType;
+    }
+
+    public void setBillingPlanType(BillingPlanType billingPlanType) {
+        this.billingPlanType = billingPlanType != null ? billingPlanType.getValue() : null;
+    }
+
+    public void setRawBillingPlanType(String rawBillingPlanType) {
+        this.billingPlanType = rawBillingPlanType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AlternateProduct that = (AlternateProduct) o;
         return Objects.equals(messageIdentifier, that.messageIdentifier) &&
-                Objects.equals(productId, that.productId);
+                Objects.equals(productId, that.productId) &&
+                Objects.equals(billingPlanType, that.billingPlanType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(messageIdentifier, productId);
+        return Objects.hash(messageIdentifier, productId, billingPlanType);
     }
 
     @Override
@@ -83,6 +115,7 @@ public class AlternateProduct {
         return "AlternateProduct{" +
                 "messageIdentifier=" + messageIdentifier +
                 ", productId='" + productId + '\'' +
+                ", billingPlanType='" + billingPlanType + '\'' +
                 '}';
     }
 }

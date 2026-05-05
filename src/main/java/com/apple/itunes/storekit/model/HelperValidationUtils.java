@@ -5,7 +5,7 @@ package com.apple.itunes.storekit.model;
 import java.util.List;
 import java.util.Objects;
 
-public final class AdvancedCommerceValidationUtils {
+public final class HelperValidationUtils {
     
     public static final int MAXIMUM_DESCRIPTION_LENGTH = 45;
     public static final int MAXIMUM_DISPLAY_NAME_LENGTH = 30;

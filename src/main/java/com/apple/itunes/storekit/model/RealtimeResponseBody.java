@@ -17,12 +17,15 @@ public class RealtimeResponseBody {
     private static final String SERIALIZED_NAME_MESSAGE = "message";
     private static final String SERIALIZED_NAME_ALTERNATE_PRODUCT = "alternateProduct";
     private static final String SERIALIZED_NAME_PROMOTIONAL_OFFER = "promotionalOffer";
+    private static final String SERIALIZED_NAME_ADVANCED_COMMERCE_INFO = "advancedCommerceInfo";
     @JsonProperty(value = SERIALIZED_NAME_MESSAGE)
     private Message message;
     @JsonProperty(value = SERIALIZED_NAME_ALTERNATE_PRODUCT)
     private AlternateProduct alternateProduct;
     @JsonProperty(value = SERIALIZED_NAME_PROMOTIONAL_OFFER)
     private PromotionalOffer promotionalOffer;
+    @JsonProperty(value = SERIALIZED_NAME_ADVANCED_COMMERCE_INFO)
+    private AdvancedCommerceInfo advancedCommerceInfo;
 
 
     public RealtimeResponseBody() {
@@ -85,6 +88,25 @@ public class RealtimeResponseBody {
         this.promotionalOffer = promotionalOffer;
     }
 
+    public RealtimeResponseBody advancedCommerceInfo(AdvancedCommerceInfo advancedCommerceInfo) {
+        this.advancedCommerceInfo = advancedCommerceInfo;
+        return this;
+    }
+
+    /**
+     * A retention offer or switch plan option.
+     *
+     * @return advancedCommerceInfo
+     * @see <a href="https://developer.apple.com/documentation/retentionmessaging/advancedcommerceinfo">advancedCommerceInfo</a>
+     **/
+    public AdvancedCommerceInfo getAdvancedCommerceInfo() {
+        return advancedCommerceInfo;
+    }
+
+    public void setAdvancedCommerceInfo(AdvancedCommerceInfo advancedCommerceInfo) {
+        this.advancedCommerceInfo = advancedCommerceInfo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,12 +114,13 @@ public class RealtimeResponseBody {
         RealtimeResponseBody that = (RealtimeResponseBody) o;
         return Objects.equals(message, that.message) &&
                Objects.equals(alternateProduct, that.alternateProduct) &&
-               Objects.equals(promotionalOffer, that.promotionalOffer);
+               Objects.equals(promotionalOffer, that.promotionalOffer) &&
+               Objects.equals(advancedCommerceInfo, that.advancedCommerceInfo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, alternateProduct, promotionalOffer);
+        return Objects.hash(message, alternateProduct, promotionalOffer, advancedCommerceInfo);
     }
 
     @Override
@@ -106,6 +129,7 @@ public class RealtimeResponseBody {
                 "message=" + message +
                 ", alternateProduct=" + alternateProduct +
                 ", promotionalOffer=" + promotionalOffer +
+                ", advancedCommerceInfo=" + advancedCommerceInfo +
                 '}';
     }
 }

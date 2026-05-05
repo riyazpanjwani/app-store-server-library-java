@@ -48,7 +48,8 @@ public class RealtimeResponseBodyTest {
         String productId = "com.example.alternate.product";
         AlternateProduct alternateProduct = new AlternateProduct()
                 .messageIdentifier(messageId)
-                .productId(productId);
+                .productId(productId)
+                .billingPlanType(BillingPlanType.MONTHLY);
         RealtimeResponseBody responseBody = new RealtimeResponseBody().alternateProduct(alternateProduct);
 
         // Serialize to JSON
@@ -61,6 +62,7 @@ public class RealtimeResponseBodyTest {
         Assertions.assertTrue(jsonNode.get("alternateProduct").has("productId"), "AlternateProduct should have 'productId' field");
         Assertions.assertEquals("b2c3d4e5-f6a7-8901-b2c3-d4e5f6a78901", jsonNode.get("alternateProduct").get("messageIdentifier").asText());
         Assertions.assertEquals("com.example.alternate.product", jsonNode.get("alternateProduct").get("productId").asText());
+        Assertions.assertEquals("MONTHLY", jsonNode.get("alternateProduct").get("billingPlanType").asText());
         Assertions.assertFalse(jsonNode.has("message"), "JSON should not have 'message' field");
         Assertions.assertFalse(jsonNode.has("promotionalOffer"), "JSON should not have 'promotionalOffer' field");
 
@@ -72,6 +74,8 @@ public class RealtimeResponseBodyTest {
         Assertions.assertNotNull(deserialized.getAlternateProduct());
         Assertions.assertEquals(messageId, deserialized.getAlternateProduct().getMessageIdentifier());
         Assertions.assertEquals(productId, deserialized.getAlternateProduct().getProductId());
+        Assertions.assertEquals(BillingPlanType.MONTHLY, deserialized.getAlternateProduct().getBillingPlanType());
+        Assertions.assertEquals("MONTHLY", deserialized.getAlternateProduct().getRawBillingPlanType());
         Assertions.assertNull(deserialized.getPromotionalOffer());
     }
 
@@ -180,6 +184,35 @@ public class RealtimeResponseBodyTest {
         Assertions.assertEquals("keyId123", deserializedV1.getKeyId());
         Assertions.assertEquals(appAccountToken, deserializedV1.getAppAccountToken());
         Assertions.assertEquals("base64encodedSignature", deserializedV1.getEncodedSignature());
+    }
+
+    @Test
+    public void testRealtimeResponseBodyWithAdvancedCommerceInfo() throws Exception {
+        UUID messageId = UUID.fromString("a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890");
+        String acData = "eyJhbGciOiJFUzI1NiJ9.base64data";
+        AdvancedCommerceInfo acInfo = new AdvancedCommerceInfo()
+                .messageIdentifier(messageId)
+                .advancedCommerceData(acData);
+        RealtimeResponseBody responseBody = new RealtimeResponseBody().advancedCommerceInfo(acInfo);
+
+        String json = objectMapper.writeValueAsString(responseBody);
+
+        JsonNode jsonNode = objectMapper.readTree(json);
+        Assertions.assertTrue(jsonNode.has("advancedCommerceInfo"));
+        Assertions.assertEquals("a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890", jsonNode.get("advancedCommerceInfo").get("messageIdentifier").asText());
+        Assertions.assertEquals(acData, jsonNode.get("advancedCommerceInfo").get("advancedCommerceData").asText());
+        Assertions.assertFalse(jsonNode.has("message"));
+        Assertions.assertFalse(jsonNode.has("alternateProduct"));
+        Assertions.assertFalse(jsonNode.has("promotionalOffer"));
+
+        RealtimeResponseBody deserialized = objectMapper.readValue(json, RealtimeResponseBody.class);
+
+        Assertions.assertNull(deserialized.getMessage());
+        Assertions.assertNull(deserialized.getAlternateProduct());
+        Assertions.assertNull(deserialized.getPromotionalOffer());
+        Assertions.assertNotNull(deserialized.getAdvancedCommerceInfo());
+        Assertions.assertEquals(messageId, deserialized.getAdvancedCommerceInfo().getMessageIdentifier());
+        Assertions.assertEquals(acData, deserialized.getAdvancedCommerceInfo().getAdvancedCommerceData());
     }
 
     @Test

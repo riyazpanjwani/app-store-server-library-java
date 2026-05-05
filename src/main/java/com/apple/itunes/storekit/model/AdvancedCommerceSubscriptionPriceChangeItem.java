@@ -61,7 +61,7 @@ public class AdvancedCommerceSubscriptionPriceChangeItem extends AbstractAdvance
 
     public AdvancedCommerceSubscriptionPriceChangeItem addDependentSKU(String dependentSKU) {
         Objects.requireNonNull(dependentSKU);
-        AdvancedCommerceValidationUtils.validateSku(dependentSKU);
+        HelperValidationUtils.validateSku(dependentSKU);
         if (this.dependentSKUs == null) {
             this.dependentSKUs = new ArrayList<>();
         }
@@ -85,7 +85,7 @@ public class AdvancedCommerceSubscriptionPriceChangeItem extends AbstractAdvance
     private void validateDependentSKUs(List<String> dependentSKUs) {
         if (dependentSKUs != null) {
             for (String sku : dependentSKUs) {
-                AdvancedCommerceValidationUtils.validateSku(sku);
+                HelperValidationUtils.validateSku(sku);
             }
         }
     }

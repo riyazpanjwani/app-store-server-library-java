@@ -35,7 +35,7 @@ public class AdvancedCommerceOffer {
 
     public AdvancedCommerceOffer(String rawPeriod, Integer periodCount, Long price, String rawReason) {
         this.period = Objects.requireNonNull(rawPeriod);
-        this.periodCount = AdvancedCommerceValidationUtils.validatePeriodCount(periodCount);
+        this.periodCount = HelperValidationUtils.validatePeriodCount(periodCount);
         this.price = Objects.requireNonNull(price);
         this.reason = Objects.requireNonNull(rawReason);
     }
@@ -43,7 +43,7 @@ public class AdvancedCommerceOffer {
 
     public AdvancedCommerceOffer(AdvancedCommerceOfferPeriod period, Integer periodCount, Long price, AdvancedCommerceOfferReason reason) {
         this.period = Objects.requireNonNull(period).getValue();
-        this.periodCount = AdvancedCommerceValidationUtils.validatePeriodCount(periodCount);
+        this.periodCount = HelperValidationUtils.validatePeriodCount(periodCount);
         this.price = Objects.requireNonNull(price);
         this.reason = Objects.requireNonNull(reason).getValue();
     }
@@ -78,7 +78,7 @@ public class AdvancedCommerceOffer {
     }
 
     public AdvancedCommerceOffer periodCount(Integer periodCount) {
-        this.periodCount = AdvancedCommerceValidationUtils.validatePeriodCount(periodCount);
+        this.periodCount = HelperValidationUtils.validatePeriodCount(periodCount);
         return this;
     }
 
@@ -92,7 +92,7 @@ public class AdvancedCommerceOffer {
     }
 
     public void setPeriodCount(Integer periodCount) {
-        this.periodCount = AdvancedCommerceValidationUtils.validatePeriodCount(periodCount);
+        this.periodCount = HelperValidationUtils.validatePeriodCount(periodCount);
     }
 
     public AdvancedCommerceOffer price(Long price) {

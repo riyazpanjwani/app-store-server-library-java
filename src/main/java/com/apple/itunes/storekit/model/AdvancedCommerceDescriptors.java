@@ -27,12 +27,12 @@ public class AdvancedCommerceDescriptors {
     protected AdvancedCommerceDescriptors() {}
 
     protected AdvancedCommerceDescriptors(String description, String displayName) {
-        this.description = AdvancedCommerceValidationUtils.validateDescription(description);
-        this.displayName = AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.description = HelperValidationUtils.validateDescription(description);
+        this.displayName = HelperValidationUtils.validateDisplayName(displayName);
     }
 
     public AdvancedCommerceDescriptors description(String description) {
-        this.description = AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = HelperValidationUtils.validateDescription(description);
         return this;
     }
 
@@ -47,11 +47,11 @@ public class AdvancedCommerceDescriptors {
     }
 
     public void setDescription(String description) {
-        this.description = AdvancedCommerceValidationUtils.validateDescription(description);
+        this.description = HelperValidationUtils.validateDescription(description);
     }
 
     public AdvancedCommerceDescriptors displayName(String displayName) {
-        this.displayName = AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = HelperValidationUtils.validateDisplayName(displayName);
         return this;
     }
 
@@ -66,7 +66,7 @@ public class AdvancedCommerceDescriptors {
     }
 
     public void setDisplayName(String displayName) {
-        this.displayName = AdvancedCommerceValidationUtils.validateDisplayName(displayName);
+        this.displayName = HelperValidationUtils.validateDisplayName(displayName);
     }
 
     public AdvancedCommerceDescriptors unknownFields(Map<String, Object> unknownFields) {
